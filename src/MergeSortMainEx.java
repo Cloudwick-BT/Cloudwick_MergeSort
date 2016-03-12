@@ -38,20 +38,38 @@ public class MergeSortMainEx {
 			j++;
 			k++;
 		}
+		leftArray = null;
+		rigthArray = null;
 		return finalArray;
 	}
 	
-	public static int[] mergeSort(int[] arr){
-		
 	
+	public static int[] mergeSort(int[] arr){
+		int mid = arr.length/2;	
+		int[] leftArray = Arrays.copyOfRange(arr, 0, mid);
+		int[] rigthArray = Arrays.copyOfRange(arr, mid, arr.length);
+		
+		if (mid < 1){
+			return arr;
+		}
+		else{
+			leftArray = mergeSort(leftArray);
+			rigthArray = mergeSort(rigthArray);
+			arr = merge(leftArray, rigthArray, arr);
+		}
+		
 		return arr;
 	}
 	
+	
 	public static void main(String[] args){
-		int[] arr = {2,1,5,3,5,3,2,3};
+		int[] arr = {8,9,10,2,1,5,3,5,3,2,3};
 		
 		arr = mergeSort(arr);
 	
+		for(int i = 0; i < arr.length; i++){
+			System.out.println(arr[i]);
+		}
 
 	}
 
